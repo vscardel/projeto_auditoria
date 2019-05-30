@@ -1,0 +1,16 @@
+body{
+	background-color: #EAF3EF;
+}
+#titulo {
+	 font-family: "Times New Roman", Times, serif;
+}
+
+#container-relatorio{
+	background-color: white;
+	border-style: solid;
+	border-radius: 5px;
+	border-width: 0.7px;
+	border-color: #A4BFC8;
+	margin-bottom: 50px;
+	max-width: 500px;
+}
