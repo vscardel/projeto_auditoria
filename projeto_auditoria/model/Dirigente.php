@@ -24,13 +24,13 @@
 
 			if(!$id_resp){
 
-				$sql_relatorio = "SELECT numero_relatorio FROM Relatorio WHERE numero_relatorio = "."'".$id_rel."'";
+				$sql_relatorio = "SELECT numero_relatorio,fk_Auditor_fk_Funcionario FROM Relatorio WHERE numero_relatorio = "."'".$id_rel."'";
 				$stmt_sql_relatorio = Datagetter::getConn()->prepare($sql_relatorio);
 				$stmt_sql_relatorio->execute();
 				$id_relatorio = $stmt_sql_relatorio->fetch(PDO::FETCH_ASSOC);
 
 				if($id_relatorio){
-					$sql_insere_resposta = "INSERT INTO Resposta VALUES ( "."'".$id."'".','.'"'.$prazo.'"'.','."'".$decisao."'".','."'".$conteudo."'".')';
+					$sql_insere_resposta = "INSERT INTO Resposta VALUES ( "."'".$id."'".','."'".$this->getSiape()."'".","."'".$id_relatorio['fk_Auditor_fk_Funcionario']."'".",".'"'.$prazo.'"'.','."'".$decisao."'".','."'".$conteudo."'".')';
 					$stmt_insere_resposta = Datagetter::getConn()->prepare($sql_insere_resposta);
 					$stmt_insere_resposta->execute();
 
@@ -57,16 +57,15 @@
 			
 			if($relatorios){
 				foreach ($relatorios as $array) {
-					$obj = new Relatorio();
-					$obj->setNumero(utf8_encode($array["numero_relatorio"]));
-					$obj->setSiapeAud(utf8_encode($array["fk_Auditor_fk_Funcionario"]));
-					$obj->setSiapeDir(utf8_encode($array["fk_Dirigente_fk_Funcionario"]));
-					$obj->setAcao(utf8_encode($array["acao"]));
-					$obj->setData(utf8_encode($array["dta"]));
-					$obj->setEscopo(utf8_encode($array["escopo"]));
-					$obj->setIntroducao(utf8_encode($array["introducao"]));
-					$obj->setExame(utf8_encode($array["exames"]));
-					array_push($retorno, $obj);
+					$vetor = array();
+					$vetor['num_rel'] = $array["numero_relatorio"];
+					$vetor['auditor'] = $array["fk_Auditor_fk_Funcionario"];
+					$vetor['dirigente']= $array["fk_Dirigente_fk_Funcionario"];
+					$vetor['acao'] = utf8_encode($array["acao"]);
+					$vetor['escopo'] = utf8_encode($array["escopo"]);
+					$vetor['intro'] = utf8_encode($array["introducao"]);
+					$vetor['exames'] = utf8_encode($array["exames"]);
+					array_push($retorno, $vetor);
 				}
 				return $retorno;
 			}
@@ -110,12 +109,8 @@
 				$stmt_sql_final = DataGetter::getConn()->prepare($sql_final);
 				$stmt_sql_final->execute();
 				$bla = $stmt_sql_final->fetch(PDO::FETCH_ASSOC);
-				$obj = new Resposta();
-				$obj->setId(utf8_encode($bla['id_resposta']));
-				$obj->setPrazo(utf8_encode($bla['prazo']));
-				$obj->setDecisao(utf8_encode($bla['decisao']));
-				$obj->setManifestacao(utf8_encode($bla['manifestacao']));
-				array_push($resposta, $obj);
+				$bla['manifestacao'] =  utf8_encode($bla['manifestacao']);
+				array_push($resposta, $bla);
 			}
 
 			return $resposta;

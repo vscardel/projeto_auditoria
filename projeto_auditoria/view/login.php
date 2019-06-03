@@ -22,7 +22,7 @@ if(isset($_POST['siape']) and isset($_POST['senha'])){
     	}
     	//alterar
     	else if($flag == 3){ //dirigente
-    		header("Location: auditorHome.php");
+    		header("Location: dirigenteHome.php");
     	}
     }
 }

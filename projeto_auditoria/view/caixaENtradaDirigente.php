@@ -1,12 +1,12 @@
 
 <?php
 
-	require_once("../model/Auditor.php");
+	require_once("../model/Dirigente.php");
 	session_start();
-	$obj_auditor = new Auditor();
-	$obj_auditor->setSiape($_SESSION['siape_logado']);
-	$obj_auditor->setSenha($_SESSION['senha_logado']);
-	$tabela = $obj_auditor->recuperaRelatorios();
+	$obj_dir = new Dirigente();
+	$obj_dir->setSiape($_SESSION['siape_logado']);
+	$obj_dir->setSenha($_SESSION['senha_logado']);
+	$tabela = $obj_dir->recuperaRelatorios();
 	
 	echo '
 	<!doctype html>
@@ -30,14 +30,13 @@
 
 	<body> 
 		<div class="container">
-		  <h2 id="titulo">Meus Relatórios</h2>
+		  <h2 id="titulo">Caixa de Entrada</h2>
 		  <table class="table">
 		    <thead class="table-info">
 		      <tr>
-		        <th>Siape do Dirigente</th>
+		        <th>Siape do Auditor</th>
 		        <th>Número do Relatório</th>
 		        <th>Ação</th>
-		        <th>Data</th>
 		        <th>Escopo</th>
 		        <th>Introdução</th>
 		        <th>Exame</th>
@@ -48,12 +47,11 @@
 
 		    if(isset($tabela)){
 		    	foreach ($tabela as $value) {
-		    		echo '<tr> <td>'.$value['dirigente'].'</td>'.'<td>'.$value['numero_relatorio'].'</td>'.
+		    		echo '<tr> <td>'.$value['auditor'].'</td>'.'<td>'.$value['num_rel'].'</td>'.
 		    		'<td>'.$value['acao'].'</td>'.
-		    		'<td>'.$value['data'].'</td>'.
 		    		'<td>'.$value['escopo'].'</td>'.
-		    		'<td>'.$value['intr'].'</td>'
-		    		.'<td>'.$value['exame'].'</td>'.'</tr>'; 
+		    		'<td>'.$value['intro'].'</td>'
+		    		.'<td>'.$value['exames'].'</td>'.'</tr>'; 
 		    	}
 		    }
 

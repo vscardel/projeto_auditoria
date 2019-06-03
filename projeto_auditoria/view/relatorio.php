@@ -8,15 +8,19 @@ $obj_auditor = new Auditor();
 $obj_auditor->setSiape($_SESSION['siape_logado']);
 $obj_auditor->setSenha($_SESSION['senha_logado']);
 
-if(!empty($_POST['dirigente'])
-and !empty($_POST['num_relatorio'])
-and !empty($_POST['data'])
-and !empty($_POST['acao'])
-and !empty($_POST['introducao'])
-and !empty($_POST['escopo'])
-and !empty($_POST['exame'])){
-	$obj_auditor->armazenaRelatorio($_POST['num_relatorio'],$_SESSION['siape_logado'],$_POST['dirigente'],
-	$_POST['acao'],$_POST['data'],$_POST['escopo'],$_POST['introducao'],$_POST['exame']);
+
+
+if(isset($_POST["envia_relatorio"])){
+	if(!empty($_POST['dirigente'])
+	and !empty($_POST['num_relatorio'])
+	and !empty($_POST['data'])
+	and !empty($_POST['acao'])
+	and !empty($_POST['introducao'])
+	and !empty($_POST['escopo'])
+	and !empty($_POST['exame'])){
+		$obj_auditor->armazenaRelatorio($_POST['num_relatorio'],$_SESSION['siape_logado'],$_POST['dirigente'],
+		$_POST['acao'],$_POST['data'],$_POST['escopo'],$_POST['introducao'],$_POST['exame']);
+	}
 }
 
 

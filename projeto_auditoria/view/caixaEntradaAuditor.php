@@ -34,8 +34,8 @@
 		  <table class="table">
 		    <thead class="table-info">
 		      <tr>
-		        <th>Siape</th>
-		        <th>Relatório</th>
+		        <th>Siape do Dirigente</th>
+		        <th>Relatório Associado</th>
 		        <th></th>
 		      </tr>
 		    </thead>

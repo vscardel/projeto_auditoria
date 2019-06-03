@@ -35,10 +35,6 @@
 						$stmt_insere_relatorio->execute();
 
 
-						$sql_insere_associa = "INSERT INTO Associa_Rel_Resp_PPP VALUES ( "."'".NULL."'".','.'"'.$num.'"'.','."'".NULL."'".')';
-						$stmt_insere_associa = DataGetter::getConn()->prepare($sql_insere_associa);
-						$stmt_insere_associa->execute();
-
 						return true;
 					}
 					else{
