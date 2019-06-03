@@ -60,7 +60,7 @@ echo ' <!doctype html>
                 	<input type = "password" name="senha" class = "form-control input-sm" id = "senha" >
             	</div>
 		<div class="col-6">
-                    <a href="cadastro.html"> Realizar Cadastro </a>
+                    <a href="cadastro.php"> Realizar Cadastro </a>
                 </div>
 	     
 	            <div class="col-4 ml-3">

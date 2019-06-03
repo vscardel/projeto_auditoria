@@ -77,6 +77,7 @@
 
 		public function efetuaCadastro($tipo,$unidade){
 
+
 			$sql_checa_siape = "SELECT siape FROM Funcionario WHERE siape = "."'".$this->getSiape()."'";
 			$sql_checa_cpf = "SELECT cpf FROM Funcionario WHERE cpf = "."'".$this->getCpf()."'";
 			$stmt_siape = DataGetter::getConn()->prepare($sql_checa_siape);
@@ -151,7 +152,7 @@
 			$stmt_checa_siape->execute();
 
 
-			if($tipo == 0 or $tipo == 1){ //auditor e auditor chefe
+			if($tipo == 1 or $tipo == 2){ //auditor e auditor chefe
 				$sql_delete_auditor = "DELETE FROM Auditor WHERE fk_funcionario_SIAPE = "."'".$this->getSiape()."'";
 				$stmt_delete_auditor = DataGetter::getConn()->prepare($sql_delete_auditor);
 				$stmt_delete_auditor->execute();
@@ -160,7 +161,7 @@
 					return true;
 				}
 			}
-			else if($tipo == 2){ // dirigente
+			else if($tipo == 3){ // dirigente
 				$sql_deleta_dirigente = "DELETE FROM Dirigente WHERE fk_funcionario_SIAPE = "."'".$this->getSiape()."'";
 				$stmt_deleta_dirigente = DataGetter::getConn()->prepare($sql_deleta_dirigente);
 				$stmt_deleta_dirigente->execute();

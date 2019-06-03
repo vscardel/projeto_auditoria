@@ -3,7 +3,6 @@ require_once("../model/Usuario.php");
 
 $obj_usuario = new Usuario();
 if(isset($_POST['siape']) and isset($_POST['senha']) and isset($_POST['nome']) and isset($_POST['cpf']) and isset($_POST['rsenha']) and isset($_POST['tipoUsuario'])) {
-
 	$obj_usuario->setSiape($_POST['siape']);
 	$obj_usuario->setSenha($_POST['senha']);
 	$obj_usuario->setNome($_POST['nome']);

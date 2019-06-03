@@ -7,6 +7,10 @@
 	$obj_auditor->setSiape($_SESSION['siape_logado']);
 	$obj_auditor->setSenha($_SESSION['senha_logado']);
 	$tabela = $obj_auditor->recuperaRelatorios();
+
+	if(isset($_POST["volta_home"])){
+		header("Location: auditorHome.php");
+	}
 	
 	echo '
 	<!doctype html>
@@ -29,6 +33,8 @@
 	</head>
 
 	<body> 
+		<form action="CaixaRelatorioAuditor.php" method="post">
+		<button type = "submit" name = "volta_home" class = "mt-2 mb-3 col-12 btn btn-info"> Home </button>
 		<div class="container">
 		  <h2 id="titulo">Meus Relatórios</h2>
 		  <table class="table">
@@ -60,6 +66,7 @@
 		echo' </tbody>
 		 	 </table>
 			 </div>
+			 </form>
 		</body>
 
 	</html>';

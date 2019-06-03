@@ -5,6 +5,25 @@
 	if(isset($_POST['redireciona_caixa_entrada_auditor'])){
 		header("Location: caixaEntradaAuditor.php");
 	}
+
+	else if(isset($_POST['leave'])){
+		header("Location: login.php");
+	}
+	else if(isset($_POST['alterar'])){
+		header("Location: update.php");
+	}
+
+	else if(isset($_POST['deletar'])){
+		require_once("../model/Auditor.php");
+		session_start();
+		$obj_dir = new Auditor();
+		$obj_dir->setSiape($_SESSION['siape_logado']);
+		$obj_dir->setSenha($_SESSION['senha_logado']);
+	 	$retorno = $obj_dir->efetuaLogin();
+	 	$obj_dir->deletaUsuario($retorno); 
+	 	header("Location: login.php");
+	}
+
 	else if(isset($_POST['redireciona_caixa_relatorio_auditor'])){
 		header("Location: CaixaRelatorioAuditor.php");
 	}
@@ -70,6 +89,11 @@
 					<button type = "submit" name = "redireciona_caixa_relatorio_auditor" class = "mt-2 mb-3 col-12 btn btn-info"> Go! </button>
 			  </div>
 			</div>
+		</div>
+		<div class="row">
+			<button type = "submit" name = "leave" class = "ml-2 mt-2 mb-3 col-1 btn btn-danger"> Sair </button>
+			<button type = "submit" name = "deletar" class = "mt-2 ml-3 mb-3 btn btn-danger"> Deletar Usuário </button>
+			<button type = "submit" name = "alterar" class = "mt-2 ml-3 mb-3 btn btn-info"> Alterar Cadastro </button>
 		</div>
 	</form>
 </body>

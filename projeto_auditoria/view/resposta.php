@@ -10,7 +10,6 @@
 	}
 
 	if(isset($_POST['envia_resp'])){
-		echo 'OOOOOOI<br>';
 		if(!empty($_POST['id'])
 		and !empty($_POST['prazo'])
 		and !empty($_POST['numRelatorio'])

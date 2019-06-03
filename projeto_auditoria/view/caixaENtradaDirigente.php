@@ -1,4 +1,3 @@
-
 <?php
 
 	require_once("../model/Dirigente.php");
@@ -8,6 +7,10 @@
 	$obj_dir->setSenha($_SESSION['senha_logado']);
 	$tabela = $obj_dir->recuperaRelatorios();
 	
+	if(isset($_POST["volta_home"])){
+		header("Location: dirigenteHome.php");
+	}
+
 	echo '
 	<!doctype html>
 
@@ -29,6 +32,8 @@
 	</head>
 
 	<body> 
+		<form action="caixaENtradaDirigente.php" method="post">
+		<button type = "submit" name = "volta_home" class = "mt-2 mb-3 col-12 btn btn-info"> Home </button>
 		<div class="container">
 		  <h2 id="titulo">Caixa de Entrada</h2>
 		  <table class="table">
@@ -58,6 +63,7 @@
 		echo' </tbody>
 		 	 </table>
 			 </div>
+			 </form>
 		</body>
 
 	</html>';
